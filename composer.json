@@ -1,0 +1,15 @@
+{
+  "name": "erick/ip-lockout-it",
+  "type": "wordpress-plugin",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Frederic Guzman",
+      "email": "frederickgzmn@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "ext-json": "*"
+  }
+}
