@@ -19,6 +19,7 @@ class Table extends \WP_List_Table {
             'lockout_id'   => 'Lockout ID',
             'lockout_type' => 'Lockout Type',
             'lockout_host' => 'IP Address',
+            'lockout_context' => 'Username',
             'lockout_act'  => 'Action'
         );
         return $columns;
@@ -66,6 +67,21 @@ class Table extends \WP_List_Table {
             return $item[ $column_name ];
             case 'lockout_act':
                 return '<input type="button" data-id="' . $item['lockout_id'] . '" class="button ip_releaser_it_action" value="Release IP Address">';
+            case 'lockout_context':
+                $objectLockout = (array) unserialize($item['lockout_context']);
+                if ( !empty( $objectLockout ) ) {
+                    $array_method = array_values($objectLockout);
+                    if ( $array_method[1] ) {
+                        $user = get_userdata( $array_method[1] );
+                        $display_name = $user->display_name;
+                    } else {
+                        $display_name = "Not there user involved";
+                    }
+                } else {
+                    $display_name = "Not there user involved";
+                }
+
+            return $display_name;
             //default:
             //return print_r( $item, true ) ; //Show the whole array for troubleshooting purposes
         }
