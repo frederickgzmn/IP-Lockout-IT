@@ -6,7 +6,7 @@ declare(strict_types=1);
 Plugin Name: IP Lockout IT
 Plugin URI: https://nilbug.com
 Description: IP releaser for ithemes
-Version: 1.0
+Version: 1.1
 Author: Frederic Guzman
 Author URI: https://nilbug.com
 License: GNU GENERAL
