@@ -6,7 +6,7 @@ declare(strict_types=1);
 Plugin Name: IP Lockout IT
 Plugin URI: https://nilbug.com
 Description: IP releaser for ithemes
-Version: 1.1
+Version: 1.2
 Author: Frederic Guzman
 Author URI: https://nilbug.com
 License: GNU GENERAL
@@ -28,18 +28,20 @@ if (!class_exists('IPLockoutIT\Main') || !class_exists('IPLockoutIT\Table')) {
 if (!class_exists('\Twig\Loader\FilesystemLoader')) {
     \esc_html('<div class="error notice"> <p><strong>Please run composer first</strong></p></div>');
 }
+
 // check for plugin using plugin name
-if ( class_exists( 'ITSEC_Core' ) ) {
-    add_action('plugins_loaded', function () {
-        Main::init();
-    });
-} else {
-    ?>
-        <p>
-            <div class="notice notice-error">
-                <p><?php _e( '<strong>IP Lockout IT plugin</strong> is not available because the <strong>iThemes plugin</strong> is not installed | activated', 'it-releaser-it-success' ); ?></p>
-            </div>
-        </p>
-    <?php
-}
+add_action('plugins_loaded', function () {
+    // check for plugin using plugin name
+    if ( class_exists( 'ITSEC_Core' ) ) {
+            Main::init();
+    } else {
+        ?>
+            <p>
+                <div class="notice notice-error">
+                    <p><?php _e( '<strong>IP Lockout IT plugin</strong> is not available because the <strong>iThemes plugin</strong> is not installed | activated', 'it-releaser-it-success' ); ?></p>
+                </div>
+            </p>
+        <?php
+    }
+});
 
